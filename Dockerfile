@@ -52,8 +52,4 @@ RUN uuidgen > /opt/zato/web_admin_password
 WORKDIR /opt/zato
 RUN echo 'password'=$(cat /opt/zato/web_admin_password) >> /opt/zato/zato_update_password.config
 
-WORKDIR /opt/zato
-RUN /opt/zato/zato_from_config_create_web_admin
-RUN /opt/zato/zato_from_config_update_password
-
 CMD ["/opt/zato/zato_start_web_admin"]

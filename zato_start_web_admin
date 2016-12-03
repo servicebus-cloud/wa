@@ -4,6 +4,9 @@ ZATO_VERSION=`ls | sort -n | tail -1`
 
 if [[ -n ${DEPLOY} ]]; then
 
+    /opt/zato/zato_from_config_create_web_admin
+    /opt/zato/zato_from_config_update_password
+
     sed -i 's/127.0.0.1/0.0.0.0/g' /opt/zato/env/web-admin/config/repo/web-admin.conf
 
   rm -f /opt/zato/env/web-admin/pidfile
