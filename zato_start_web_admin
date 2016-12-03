@@ -1,6 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ZATO_VERSION=`ls | sort -n | tail -1`
 
-rm -f /opt/zato/env/web-admin/pidfile
-/opt/zato/$ZATO_VERSION/bin/zato start /opt/zato/env/web-admin --fg
+if [[ -n ${DEPLOY} ]]; then
+
+  rm -f /opt/zato/env/web-admin/pidfile
+  /opt/zato/$ZATO_VERSION/bin/zato start /opt/zato/env/web-admin --fg
+
+fi
