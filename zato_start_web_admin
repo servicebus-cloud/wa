@@ -4,6 +4,8 @@ ZATO_VERSION=`ls | sort -n | tail -1`
 
 if [[ -n ${DEPLOY} ]]; then
 
+    sed -i 's/127.0.0.1/0.0.0.0/g' /opt/zato/env/web-admin/config/repo/web-admin.conf
+
   rm -f /opt/zato/env/web-admin/pidfile
   /opt/zato/$ZATO_VERSION/bin/zato start /opt/zato/env/web-admin --fg
 
