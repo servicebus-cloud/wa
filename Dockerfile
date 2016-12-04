@@ -1,6 +1,6 @@
 # Zato web-admin
 
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 MAINTAINER Rafał Krysiak <rafal@zato.io>
 
 RUN ln -s -f /bin/true /usr/bin/chfn
@@ -11,10 +11,12 @@ RUN apt-get update && apt-get install -y apt-transport-https \
     software-properties-common \
     curl \
     telnet \
+    nano \
+    nmap \
     wget
 
 # Add the package signing key
-RUN curl -s https://zato.io/repo/zato-0CBD7F72.pgp.asc | sudo apt-key add -
+RUN curl -s https://zato.io/repo/zato-0CBD7F72.pgp.asc | apt-key add -
 
 # Add Zato repo to your apt
 # update sources and install Zato
@@ -31,6 +33,7 @@ EXPOSE 8183
 
 # Prepare additional config files, CA certificates, keys and starter scripts
 RUN mkdir /opt/zato/ca
+COPY certs/* /opt/zato/ca/
 COPY certs /opt/zato/certs
 COPY zato_web_admin.config /opt/zato/
 

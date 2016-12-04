@@ -1,0 +1,2 @@
+root ALL=(ALL) NOPASSWD: ALL
+zato ALL=(ALL) NOPASSWD: ALL
